@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-
   devise_for :admins, skip: [:passwords], controllers: {
   sessions: "admin/sessions"
 }
@@ -12,14 +11,18 @@ Rails.application.routes.draw do
  root to: 'public/homes#top'
 
   scope module: :public do
-  
+
     resources :cart_items,only: [:index,:create,:update,:destroy]
     resources :adresses,only: [:index,:edit,:create,:destroy,:update]
+    resources :customers,only: [:show,:edit,:update]
     get '/about' => 'homes#about', as: 'about'
+    get 'customers/unsubsrib'=> 'customers#unsubsrib', as: 'unsubsrib'
+    patch 'customers/withdraw'=> 'customers#withdraw', as: 'withdraw'
   end
   namespace :admin do
    resources :items,only: [:new,:create,:index,:show,:edit,:update]
    resources :genres,only: [:create,:index,:edit,:update]
+   resources :customers,only: [:show,:index,:edit,:update]
     #get 'homes/top'
 
 
