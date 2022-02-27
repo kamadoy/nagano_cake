@@ -1,0 +1,11 @@
+<%= form_with model: @adress ,url: {controller: 'public/adresses',action: 'update'} do |f| %>
+<h4>配送先登録・一覧</h4>
+<h4>郵便番号</h4>
+<%= f.number_field :postal_code %>
+<h4>住所</h4>
+<%= f.text_field :adress %>
+<h4>宛名</h4>
+<%= f.text_field :name %>
+
+<%= f.submit '編集' %>
+<% end %>
