@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+
   devise_for :admins, skip: [:passwords], controllers: {
   sessions: "admin/sessions"
 }
@@ -15,6 +16,7 @@ Rails.application.routes.draw do
     resources :cart_items,only: [:index,:create,:update,:destroy]
     resources :adresses,only: [:index,:edit,:create,:destroy,:update]
     resources :customers,only: [:show,:edit,:update]
+    resources :items,only: [:index,:show]
     get '/about' => 'homes#about', as: 'about'
     get 'customers/unsubsrib'=> 'customers#unsubsrib', as: 'unsubsrib'
     patch 'customers/withdraw'=> 'customers#withdraw', as: 'withdraw'

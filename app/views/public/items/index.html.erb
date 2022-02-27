@@ -1,0 +1,8 @@
+<% @items.each do |item| %>
+<h1>商品一覧</h1>
+<%= image_tag item.get_image_id(200,200) %><br>
+<%= link_to item_path(item) do %>
+<%= item.name %><br>
+<%= item.price %>円
+<% end %><br>
+<% end %>
