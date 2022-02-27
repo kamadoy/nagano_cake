@@ -1,0 +1,13 @@
+<h1>会員一覧</h1>
+ <% @customers.each do |customer| %>
+　<h4>会員id</h4>
+　<%= customer.id %>
+　<h4>氏名</h4>
+　<%= link_to admin_customer_path(customer) do %>
+　<%= customer.first_name %><%= customer.last_name %>
+　<% end %>
+　<h4>メールアドレス</h4>
+　<%= customer.email %>
+　<h4>ステータス</h4>
+　<%#= customer.is_active ? '販売中':'販売停止中' %>
+<% end %>
