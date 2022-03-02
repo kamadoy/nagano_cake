@@ -12,8 +12,10 @@
 
 <%#= @item.is_active ? '販売中':'売り切れ' %>
 <% if @item.is_active? %>
-<%= form_with model: @cart_item,url: {controller:'cart_items',action: 'update'} do |f| %>
-<%= f.select :amount,[1,2,3,4,5,6,7,8,9,10],{include_blank: "選択してください"} %>
+<%= form_with model: @cart_item, url: {controller: 'cart_items',action: 'create'} do |f| %>
+<%= f.select :amount,*[1..10],{include_blank: "選択してください"} %>
+<%= f.hidden_field :item_id, :value => @item.id %>
+
 <%= f.submit 'カートに入れる'%>
 <% end %>
 <% else %>

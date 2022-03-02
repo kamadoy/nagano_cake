@@ -20,6 +20,7 @@ Rails.application.routes.draw do
     get '/about' => 'homes#about', as: 'about'
     get 'customers/unsubsrib'=> 'customers#unsubsrib', as: 'unsubsrib'
     patch 'customers/withdraw'=> 'customers#withdraw', as: 'withdraw'
+    delete '/cart_items/:id/destroy_all' => 'cart_items#destroy_all', as: 'destroy_all'
   end
   namespace :admin do
    resources :items,only: [:new,:create,:index,:show,:edit,:update]
