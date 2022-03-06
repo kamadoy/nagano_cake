@@ -14,9 +14,9 @@
 <% end %>
 <p>合計</p>
 ¥<%= @total.floor %>
-<%= f.hidden_field :total_payment, :value => @total.floor+800 %>
+<%= f.hidden_field :total_payment, :value => @total.floor + @order.shipping_cost %>
 <h4>支払い方法</h4>
-<%= @order.payment_method %>
+<%= @order.payment_method_i18n %>
 <%= f.hidden_field :payment_method, :value => @order.payment_method %>
 <h4>お届け先</h4>
 〒<%= @order.postal_code %>
@@ -25,6 +25,7 @@
 <%= f.hidden_field :adress, :value => @order.adress %>
 <%= @order.name %>
 <%= f.hidden_field :name, :value => @order.name %>
+<%= f.hidden_field :shipping_cost, :value => 800 %>
 
 <%= f.submit"注文を確定する" %>
 <% end %>
