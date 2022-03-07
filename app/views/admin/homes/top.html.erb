@@ -1,0 +1,17 @@
+<h1>注文履歴一覧</h1>
+<% @orders.each do |order| %>
+    <h4>注文日</h4>
+    <%= order.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
+    <h4>注文者</h4>
+    <%= order.customer.first_name %><%= order.customer.last_name %>
+    <h4>注文個数</h4>
+    <% array = [] %>
+    <% order.order_details.each do |order_detail| %>
+    <% array << order_detail.amount %>
+    <% end %>
+    <%= array.sum %>
+    <h4>ステータス</h4>
+    <%= order.status_i18n %>
+    <h4>注文詳細</h4>
+    <%= link_to "表示する",admin_order_detail_path(order) %>
+<% end %>

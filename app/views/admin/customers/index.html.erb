@@ -9,5 +9,5 @@
 　<h4>メールアドレス</h4>
 　<%= customer.email %>
 　<h4>ステータス</h4>
-　<%#= customer.is_active ? '販売中':'販売停止中' %>
+　<%= customer.is_deleted ? '退会':'有効' %>
 <% end %>

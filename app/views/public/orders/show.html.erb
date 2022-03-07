@@ -4,15 +4,14 @@
     <h4>配送先</h4>
     〒<%= @order.postal_code %>
     <%= @order.adress %><%= @order.name %>
-
-    <h4>ステータス</h4>
+    <h4>入金ステータス</h4>
     <%= @order.status_i18n %>
 <h1>注文内容</h1>
-
     <% @order_details.each do |order_detail| %>
      <%= order_detail.item.name %>
      <%= order_detail.amount %>
     <% end %>
+
 <h1>請求情報</h1>
 <h4>商品合計</h4>
 \<%= @order.total_payment - @order.shipping_cost %>

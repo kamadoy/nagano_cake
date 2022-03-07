@@ -17,5 +17,5 @@
 
 
 <h4>販売ステータス</h4>
-<%#= @item.is_active ? '販売中':'販売停止中' %>
+　<%= @customer.is_deleted ? '退会':'有効' %>
 <%= link_to "編集",edit_admin_customer_path %>

@@ -1,0 +1,39 @@
+<h1>注文情報</h1>
+<%= form_with model: @order,url: admin_order_detail_path(@order) do |f| %>
+  　<h4>購入者</h4>
+  　<%= @order.customer.first_name %><%= @order.customer.last_name %>
+　　<h4>注文日</h4>
+    <%= @order.created_at.strftime('%Y/%m/%d') %>
+    <h4>配送先</h4>
+    〒<%= @order.postal_code %>
+    <%= @order.adress %><%= @order.name %>
+    <h4>ステータス</h4>
+    <%= f.select :status, Order.statuses_i18n.invert,{},placeholder: 0 %>
+<%= f.submit "更新" %>
+<%# end %>
+    <h1>注文内容</h1>
+<% @order_details.each do |order_detail| %>
+<%= f.fields_for :order_details,order_detail do |i| %>
+<%#= form_with model: order_detail,url: admin_order_detail_path(order_detail) do |f| %>
+<p>商品名</p>
+<%= order_detail.item.name %>
+<p>単価</p>
+<%= (order_detail.item.price*1.08).floor %>
+<p>個数</p>
+<%= order_detail.amount %>
+<p>小計</p>
+\<%= order_detail.amount*(order_detail.item.price*1.08).floor %>
+<p>製作ステータス</p>
+<%= i.select :making_status, OrderDetail.making_statuses_i18n.invert,{},placeholder: 0 %>
+<%= i.submit "更新" %>
+<% end %>
+<% end %>
+<% end %>
+
+<h1>請求情報</h1>
+<h4>商品合計</h4>
+\<%= @order.total_payment - @order.shipping_cost %>
+<h4>配送料</h4>
+\<%= @order.shipping_cost %>
+<h4>ご請求額</h4>
+    \<%= @order.total_payment %>
