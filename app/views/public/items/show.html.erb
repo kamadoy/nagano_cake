@@ -10,8 +10,7 @@
 <h4><%= (@item.price*1.08).floor %>円</h4>
 <P>(税込)</P>
 </div>
-</div>
-</div>
+
 <%#= @item.is_active ? '販売中':'売り切れ' %>
 
 <% if @item.is_active == false %>
@@ -20,12 +19,15 @@
 <%= form_with model: @cart_item, url: {controller: 'cart_items',action: 'create'} do |f| %>
 <%= f.select :amount,*[1..10],{include_blank: "選択してください"} %>
 <%= f.hidden_field :item_id, :value => @item.id %>
+<%= f.submit 'カートに入れる', class: " btn btn-sm btn-success" %>
 <% end %>
 <% else %>
 <h4>購入にはログインが必要です</h4>
         <%= link_to "新規登録", new_customer_registration_path %><br>
         <%= link_to "ログイン", new_customer_session_path %>
 <% end %>
+</div>
+</div>
 <%# elsif @item.is_active? %>
 <%#= form_with model: @cart_item, url: {controller: 'cart_items',action: 'create'} do |f| %>
 <%#= f.select :amount,*[1..10],{include_blank: "選択してください"} %>
