@@ -1,14 +1,43 @@
-<h4>商品画像</h4>
- <%#= @item.image_id %>
-<%= image_tag @item.get_image_id(500,500) %>
-<h4>商品名</h4>
-<%= @item.name %>
-<h4>商品説明</h4>
-<%= @item.introduction %>
-<h4>ジャンル</h4>
-<%= @item.genre.name %>
-<h4>税抜き価格</h4>
-<%= @item.price %>円
-<h4>販売ステータス</h4>
-<%= @item.is_active ? '販売中':'販売停止中' %>
-<%= link_to "編集",edit_admin_item_path %>
+<div class="container">
+
+  <div class ="row">
+    <div class ="col-lg-6">
+  <%= image_tag @item.get_image_id(500,500) %>
+  </div>
+  <div class ="col-lg-6"><br>
+  <div class="row">
+    <div class="col-md-3">
+<label for="name">商品名</label></div>
+ <div class="col-md-6">
+<h4><%= @item.name %></h4></div>
+</div>
+  <div class="row">
+    <div class="col-md-3">
+<label for="introduction">商品説明</label></div>
+ <div class="col-md-6">
+<p><%= @item.introduction %></p></div>
+</div>
+  <div class="row">
+    <div class="col-md-3">
+<label for="genre">ジャンル</label></div>
+ <div class="col-md-6">
+<p><%= @item.genre.name %></p></div>
+</div>
+  <div class="row">
+    <div class="col-md-3">
+<label for="genre">税抜き価格<br>(税込み価格)</label></div>
+ <div class="col-md-6">
+<h4><%= @item.price %>円</h4>
+<p><%= (@item.price*1.08).floor %>円</p>
+</div>
+</div>
+  <div class="row">
+    <div class="col-md-3">
+<label for="genre">販売ステータス</label></div>
+ <div class="col-md-6">
+<p><%= @item.is_active ? '販売中':'販売停止中' %></p></div>
+</div>
+<%= link_to "編集",edit_admin_item_path, class: "btn btn-success btn-sm text-center" %>
+</div>
+</div>
+</div>
