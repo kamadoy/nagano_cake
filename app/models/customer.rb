@@ -4,6 +4,13 @@ class Customer < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  def update_email
+self.email = unconfirmed_email
+self.unconfirmed_email = nil
+self.bounce_email = false
+skip_reconfirmation!
+save
+  end
 
 
          has_many :cart_items, dependent: :destroy
