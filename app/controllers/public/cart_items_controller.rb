@@ -16,9 +16,12 @@ class Public::CartItemsController < ApplicationController
 
        redirect_to cart_items_path
 
-     else
-     @cart_item.save
+     elsif@cart_item.save
      redirect_to cart_items_path
+     else
+     @cart_items = current_customer.cart_items
+     render :index
+
      end
 
   end

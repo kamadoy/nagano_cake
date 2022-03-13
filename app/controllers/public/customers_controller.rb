@@ -9,8 +9,11 @@ class Public::CustomersController < ApplicationController
 
   def update
     @customer = current_customer
-    @customer.update(customer_params)
+    if@customer.update(customer_params)
     redirect_to customer_path(@customer.id)
+    else
+      render :edit
+    end
   end
 
   def unsubsrib

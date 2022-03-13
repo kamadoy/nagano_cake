@@ -3,4 +3,9 @@ class Adress < ApplicationRecord
   def adress_display
   '〒' + postal_code + ' ' + adress + ' ' + name
   end
+  with_options presence: true do
+  validates :name
+  validates :postal_code
+  validates :adress
+  end
 end

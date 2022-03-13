@@ -11,4 +11,11 @@ class Item < ApplicationRecord
   def get_image_id(width, height)
     image_id.variant(resize_to_limit: [width, height]).processed
   end
+   with_options presence: true do
+        validates :name
+        validates :introduction
+        validates :price
+        validates :image_id
+      end
+
 end

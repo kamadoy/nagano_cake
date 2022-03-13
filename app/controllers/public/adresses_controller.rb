@@ -1,7 +1,7 @@
 class Public::AdressesController < ApplicationController
   def index
     @adress = Adress.new
-    @adresses = Adress.all
+    @adresses = current_customer.adresses
   end
 
   def edit
@@ -10,15 +10,22 @@ class Public::AdressesController < ApplicationController
 
   def update
      @adress = Adress.find(params[:id])
-     @adress.update(adress_params)
+     if@adress.update(adress_params)
      redirect_to adresses_path
+     else
+      render :edit
+     end
   end
 
   def create
     @adress = Adress.new(adress_params)
-    @adress.save
-
+    @adress.customer = current_customer
+    if@adress.save
     redirect_to adresses_path
+    else
+      @adresses = current_customer.adresses
+      render :index
+    end
   end
 
   def destroy
