@@ -33,7 +33,7 @@ Rails.application.routes.draw do
    resources :genres,only: [:create,:index,:edit,:update]
    resources :customers,only: [:show,:index,:edit,:update]
    resources :order_details,only: [:show,:update]
-   get 'homes/top'=> 'homes#top', as: 'top'
+   get '/'=> 'homes#top', as: 'top'
     #get 'homes/top'
 
 

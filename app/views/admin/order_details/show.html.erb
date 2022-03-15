@@ -19,6 +19,12 @@
 </div>
 <div class="row">
     <div class="form-group col-md-2">
+<label for="day"><b>支払い方法</b></label></div>
+ <div class="col-md-5">
+ <%= @order.payment_method_i18n %></div>
+</div>
+<div class="row">
+    <div class="form-group col-md-2">
 <label for="day"><b>配送先</b></label></div>
  <div class="col-md-5">
  〒<%= @order.postal_code %>
@@ -72,6 +78,11 @@
 <td><%= order_detail.amount %></td>
 <td><%= order_detail.amount*(order_detail.item.price*1.08).floor %>円</td>
 <td><%= i.select :making_status, OrderDetail.making_statuses_i18n.invert,{},placeholder: 0 %>
+<% if order_detail.order.status == 1 %>
+<%# i.hidden_field :making_status, :value => 1 %>
+<% order_detail.making_status >= 1 %>
+<%#@order.order_detail.making_status == "1" %>
+<% end %>
 <%= i.submit "更新", class: "btn btn-success btn-sm" %></td>
  </tr>
 <% end %>
